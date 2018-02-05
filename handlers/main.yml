@@ -1,2 +1,2 @@
 - name: restart mongo
-  service: name=mongod state:restarted
+  service: name=mongod state=restarted
