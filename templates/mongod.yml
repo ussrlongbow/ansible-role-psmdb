@@ -11,7 +11,7 @@ systemLog:
 
 net:
   port: {{ percona.mongo.port }}
-  bindIp: 127.0.0.1,{{ percona.mongo.ip }}
+  bindIp: 127.0.0.1,{{ mongo_backnet_ip }}
 
 replication:
   replSetName: {{ percona.mongo.replset }}

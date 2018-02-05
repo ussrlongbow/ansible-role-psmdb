@@ -1,7 +1,6 @@
 percona:
     mongo:
         version: 34
-        ip: 10.0.0.1
         replset: MyReplSet
         datadir: /var/lib/mongodb
         logfile: /var/log/mongodb/mongod.log
