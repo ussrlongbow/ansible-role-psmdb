@@ -15,3 +15,9 @@ net:
 
 replication:
   replSetName: {{ percona.mongo.replset }}
+
+{% if percona.mongo.security is defined %}
+security:
+  transitionToAuth: {{ percona.mongo.security.transitionToAuth | default(no) }}
+  keyFile: {{ percona.mongo.security.keyFile }}
+{% endif %}

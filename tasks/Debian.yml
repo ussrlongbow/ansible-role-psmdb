@@ -2,27 +2,28 @@
 - name: add Percona Server repo
   apt:
     deb: https://repo.percona.com/apt/percona-release_0.1-4.{{ ansible_distribution_release }}_all.deb
-  tags:
-    - percona_mongo
+  tags: [ percona_mongo ]
 
 - name: apt-get update
   apt:
     update_cache: yes
-  tags:
-    - percona_mongo
+  tags: [ percona_mongo ]
 
 - name: Install Percona Server for MongoDB
   apt: 
     name: percona-server-mongodb-{{ percona.mongo.version }}
     state: present
-  tags:
-    - percona_mongo
+  tags: [ percona_mongo ]
 
 - name: update config file
   template: src=mongod.yml dest=/etc/mongod.conf force=yes
+  #notify: restart mongo
+  tags: [ percona_mongo ]
 
-- name: reload systemd daemon
-  shell: "systemctl daemon-reload"
-  notify: restart mongo
-  tags:
-    - percona_mongo
+- name: enable mongo
+  systemd:
+    name: mongod
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  tags: [ percona_mongo ]
