@@ -6,3 +6,6 @@ percona:
         logfile: /var/log/mongodb/mongod.log
         port: 27017
         engine: rocksdb
+        security:
+          keyFile: /opt/mongo/mongodb-keyfile
+          transitionToAuth: no
